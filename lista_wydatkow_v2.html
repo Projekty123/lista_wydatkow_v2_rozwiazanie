@@ -39,7 +39,58 @@
 
     <ul id="lista"></ul>
 
-    <h2>Suma: <span id="suma">0.00</span></h2>
+        <h2>Filtry</h2>
+
+    <label for="filtrKategoria">Kategoria:</label>
+    <select id="filtrKategoria">
+        <option value="wszystkie">Wszystkie</option>
+        <option value="jedzenie">Jedzenie</option>
+        <option value="transport">Transport</option>
+        <option value="rozrywka">Rozrywka</option>
+        <option value="zakupy">Zakupy</option>
+        <option value="rachunki">Rachunki</option>
+        <option value="inne">Inne</option>
+    </select>
+
+    <label for="filtrMiesiac">Miesiąc:</label>
+    <input type="month" id="filtrMiesiac">
+
+
+    <label for="sortowanie">Sortowanie:</label>
+    <select id="sortowanie">
+        <option value="najnowsze">Najnowsze</option>
+        <option value="najstarsze">Najstarsze</option>
+        <option value="najdrozsze">Najdroższe</option>
+        <option value="najtansze">Najtańsze</option>
+    </select>
+
+
+    <h2>Podsumowanie</h2>
+
+    <p>
+        Łączna kwota:
+        <strong><span id="suma">0.00</span> zł</strong>
+    </p>
+
+    <p>
+        Liczba wydatków:
+        <strong><span id="liczbaWydatkow">0</span></strong>
+    </p>
+
+
+    <h2>Wydatki</h2>
+
+    <ul id="lista"></ul>
+
+
+    <h2>Wydatki według kategorii</h2>
+
+    <ul id="podsumowanieKategorii"></ul>
+
+
+    <button type="button" id="usunWszystkie">
+        Usuń wszystkie wydatki
+    </button>
 
 </body>
 </html>

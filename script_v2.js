@@ -42,6 +42,7 @@ function dodajWydatek(nazwa, kwota)
     wydatek.innerHTML = `
         ${nazwa} - ${kwota}
         <button type="button" onclick="usunWydatek(this)">Usuń</button>
+        <button type="button" onclick="edytujWydatek(this)">Edytuj</button>
     `;
 
     document.getElementById("lista").appendChild(wydatek);
