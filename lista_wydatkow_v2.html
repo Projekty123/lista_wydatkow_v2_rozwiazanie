@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista wydatków</title>
+
+    <script src="script_v2.js" defer></script>
+</head>
+
+<body>
+
+    <h1>Lista wydatków</h1>
+
+    <form onsubmit="walidacja(event)">
+        <label for="nazwa">Nazwa wydatku:</label>
+        <input type="text" id="nazwa">
+
+        <label for="kwota">Kwota:</label>
+        <input type="number" id="kwota" step="0.01">
+
+        <button type="submit">Dodaj</button>
+    </form>
+
+    <h2>Wydatki:</h2>
+
+    <ul id="lista"></ul>
+
+    <h2>Suma: <span id="suma">0.00</span></h2>
+
+</body>
+</html>
