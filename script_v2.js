@@ -6,6 +6,7 @@ document.getElementById("filtrKategoria").addEventListener("change", render);
 document.getElementById("filtrMiesiac").addEventListener("change", render);
 document.getElementById("sortowanie").addEventListener("change", render);
 document.getElementById("usunWszystkie").addEventListener("click", usunWszystkie);
+document.getElementById("wyszukiwarka").addEventListener("input", render);
 
 function walidacja(event)
 {
@@ -70,28 +71,7 @@ function walidacja(event)
     document.querySelector("form").reset();
     render();
 
-    // aktualizujSume();
-
-    // document.getElementById("nazwa").value = "";
-    // document.getElementById("kwota").value = "";
 }
-
-
-// function dodajWydatek(nazwa, kwota)
-// {
-//     let wydatek = document.createElement("li");
-
-//     wydatek.dataset.kwota = kwota;
-//     wydatek.dataset.nazwa = nazwa;
-
-//     wydatek.innerHTML = `
-//         ${nazwa} - ${kwota}
-//         <button type="button" onclick="usunWydatek(this)">Usuń</button>
-//         <button type="button" onclick="edytujWydatek(this)">Edytuj</button>
-//     `;
-
-//     document.getElementById("lista").appendChild(wydatek);
-// }
 
 function zapiszWydatki() {
     localStorage.setItem("wydatki", JSON.stringify(wydatki));
@@ -101,6 +81,7 @@ function render() {
     let katFiltru = document.getElementById("filtrKategoria").value;
     let miesiacFiltru = document.getElementById("filtrMiesiac").value;
     let typSortowania = document.getElementById("sortowanie").value;
+    let wyszukiwanaFraza = document.getElementById("wyszukiwarka").value.toLowerCase();
 
     let widoczneWydatki = [];
 
@@ -109,8 +90,9 @@ function render() {
         let w = wydatki[i];
         let pasujeKategoria = (katFiltru === "wszystkie" || w.kategoria.toLowerCase() === katFiltru.toLowerCase());
         let pasujeMiesiac = (miesiacFiltru === "" || w.data.startsWith(miesiacFiltru));
+        let pasujeNazwa = w.nazwa.toLowerCase().includes(wyszukiwanaFraza);
 
-        if (pasujeKategoria && pasujeMiesiac) {
+        if (pasujeKategoria && pasujeMiesiac && pasujeNazwa) {
             widoczneWydatki.push(w);
         }
     }
@@ -212,19 +194,6 @@ function usunWydatek(id)
 }
 
 
-// function aktualizujSume()
-// {
-//     let wydatki = document.querySelectorAll("#lista li");
-//     let suma = 0;
-
-//     wydatki.forEach(function(wydatek) {
-//         let kwota = Number(wydatek.dataset.kwota);
-//         suma += kwota;
-//     });
-
-//     document.getElementById("suma").textContent = suma.toFixed(2);
-// }
-
 function usunWszystkie()
 {
     if (wydatki.length === 0) {
@@ -242,35 +211,6 @@ function usunWszystkie()
 }
 
 
-// function zapiszWydatki()
-// {
-//     let wydatki = [];
 
-//     document.querySelectorAll("#lista li").forEach(function(wydatek) {
-
-//         wydatki.push({
-//             nazwa: wydatek.dataset.nazwa,
-//             kwota: Number(wydatek.dataset.kwota)
-//         });
-
-//     });
-
-//     localStorage.setItem("wydatki", JSON.stringify(wydatki));
-// }
-
-
-// function wczytajWydatki()
-// {
-//     let wydatki = JSON.parse(localStorage.getItem("wydatki")) || [];
-
-//     wydatki.forEach(function(wydatek) {
-//         dodajWydatek(wydatek.nazwa, wydatek.kwota);
-//     });
-
-//     aktualizujSume();
-// }
-
-
-// wczytajWydatki();
 
 render()
