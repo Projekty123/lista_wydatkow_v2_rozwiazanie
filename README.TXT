@@ -1,0 +1,1 @@
+jako funkcję dodatkową dodałam wyszukiwanie wydatku po nazwie obok innych filtrów
