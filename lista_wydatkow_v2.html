@@ -12,7 +12,7 @@
 
     <h1>Lista wydatków</h1>
 
-    <form onsubmit="walidacja(event)">
+    <form>
         <label for="nazwa">Nazwa wydatku:</label>
         <input type="text" id="nazwa">
 
@@ -34,6 +34,21 @@
 
         <button type="submit">Dodaj</button>
     </form>
+
+
+    <h2>Podsumowanie</h2>
+
+    <p>
+        Łączna kwota:
+        <strong><span id="suma">0.00</span> zł</strong>
+    </p>
+
+    <p>
+        Liczba wydatków:
+        <strong><span id="liczbaWydatkow">0</span></strong>
+    </p>
+
+    <h2>Wydatki</h2>
 
     <label for="filtrKategoria">Kategoria:</label>
     <select id="filtrKategoria">
@@ -58,21 +73,6 @@
         <option value="najtansze">Najtańsze</option>
     </select>
 
-
-    <h2>Podsumowanie</h2>
-
-    <p>
-        Łączna kwota:
-        <strong><span id="suma">0.00</span> zł</strong>
-    </p>
-
-    <p>
-        Liczba wydatków:
-        <strong><span id="liczbaWydatkow">0</span></strong>
-    </p>
-
-
-    <h2>Wydatki</h2>
 
     <ul id="lista"></ul>
 

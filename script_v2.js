@@ -150,7 +150,54 @@ function render() {
     renderKategorie();
 }
 
-function usunWydatek(przycisk)
+function renderKategorie()
+{
+    let podsumowanie = {};
+
+    for (let i = 0; i < wydatki.length; i++) {
+        let kategoria = wydatki[i].kategoria;
+        let kwota = wydatki[i].kwota;
+
+        if (podsumowanie[kategoria] === undefined) {
+            podsumowanie[kategoria] = 0;
+        }
+
+        podsumowanie[kategoria] += kwota;
+    }
+
+    let listaKategorii = document.getElementById("podsumowanieKategorii");
+
+    listaKategorii.innerHTML = "";
+
+    for (let kategoria in podsumowanie) {
+        let li = document.createElement("li");
+
+        li.textContent =
+            kategoria + " - " + podsumowanie[kategoria].toFixed(2) + " zł";
+
+        listaKategorii.appendChild(li);
+    }
+}
+
+function edytujWydatek(id)
+{
+    for (let i = 0; i < wydatki.length; i++) {
+        if (wydatki[i].id === id) {
+            document.getElementById("nazwa").value = wydatki[i].nazwa;
+            document.getElementById("kwota").value = wydatki[i].kwota;
+            document.getElementById("kategoria").value = wydatki[i].kategoria;
+            document.getElementById("data").value = wydatki[i].data;
+
+            edytowaneId = id;
+
+            document.querySelector("form button[type='submit']").textContent = "Zapisz zmiany";
+
+            break;
+        }
+    }
+}
+
+function usunWydatek(id)
 {
     let nowaLista = [];
     for (let i = 0; i < wydatki.length; i++) {
@@ -165,17 +212,33 @@ function usunWydatek(przycisk)
 }
 
 
-function aktualizujSume()
+// function aktualizujSume()
+// {
+//     let wydatki = document.querySelectorAll("#lista li");
+//     let suma = 0;
+
+//     wydatki.forEach(function(wydatek) {
+//         let kwota = Number(wydatek.dataset.kwota);
+//         suma += kwota;
+//     });
+
+//     document.getElementById("suma").textContent = suma.toFixed(2);
+// }
+
+function usunWszystkie()
 {
-    let wydatki = document.querySelectorAll("#lista li");
-    let suma = 0;
+    if (wydatki.length === 0) {
+        alert("Nie ma żadnych wydatków do usunięcia.");
+        return;
+    }
 
-    wydatki.forEach(function(wydatek) {
-        let kwota = Number(wydatek.dataset.kwota);
-        suma += kwota;
-    });
+    let potwierdzenie = confirm("Czy na pewno chcesz usunąć wszystkie wydatki?");
 
-    document.getElementById("suma").textContent = suma.toFixed(2);
+    if (potwierdzenie) {
+        wydatki = [];
+        zapiszWydatki();
+        render();
+    }
 }
 
 
@@ -196,16 +259,18 @@ function aktualizujSume()
 // }
 
 
-function wczytajWydatki()
-{
-    let wydatki = JSON.parse(localStorage.getItem("wydatki")) || [];
+// function wczytajWydatki()
+// {
+//     let wydatki = JSON.parse(localStorage.getItem("wydatki")) || [];
 
-    wydatki.forEach(function(wydatek) {
-        dodajWydatek(wydatek.nazwa, wydatek.kwota);
-    });
+//     wydatki.forEach(function(wydatek) {
+//         dodajWydatek(wydatek.nazwa, wydatek.kwota);
+//     });
 
-    aktualizujSume();
-}
+//     aktualizujSume();
+// }
 
 
-wczytajWydatki();
+// wczytajWydatki();
+
+render()
