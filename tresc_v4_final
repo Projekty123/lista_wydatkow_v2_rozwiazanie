@@ -1,0 +1,302 @@
+Pewnie. Przygotowałem zadanie jako **finalny etap zamykający zakres: HTML + JavaScript + Tailwind CSS + DaisyUI**.
+
+writing{variant="document" id="48291"}
+# Zadanie finałowe: Lista wydatków V3
+
+## Cel zadania
+
+Rozwiń aplikację **Lista wydatków V2** do finalnej wersji aplikacji, która jest nie tylko funkcjonalna, ale też wygodna, estetyczna i uporządkowana w kodzie.
+
+To zadanie kończy zakres nauki obejmujący:
+
+- HTML,
+- JavaScript,
+- obsługę formularzy,
+- walidację danych,
+- `localStorage`,
+- filtrowanie i sortowanie,
+- Tailwind CSS,
+- komponenty DaisyUI.
+
+## Główne wymaganie
+
+Aplikacja ma nadal działać jako lista wydatków, ale formularz dodawania i edycji wydatku ma zostać przeniesiony do **modala DaisyUI**.
+
+Na ekranie głównym nie powinno być stale widocznego formularza. Zamiast tego nad listą wydatków powinien znajdować się przycisk:
+
+**Dodaj wydatek**
+
+Po kliknięciu przycisku ma otworzyć się modal z formularzem.
+
+## 1. Formularz w modalu
+
+Przenieś formularz dodawania/edycji wydatku do modala DaisyUI.
+
+Formularz powinien zawierać:
+
+- nazwę wydatku,
+- kwotę,
+- kategorię,
+- datę wydatku,
+- przycisk zapisu,
+- przycisk anulowania/zamknięcia.
+
+Modal powinien działać w dwóch trybach:
+
+- **dodawanie nowego wydatku**,
+- **edycja istniejącego wydatku**.
+
+Przy dodawaniu modal powinien mieć tytuł np. **Dodaj wydatek**.
+
+Przy edycji modal powinien mieć tytuł np. **Edytuj wydatek**.
+
+## 2. Dodawanie wydatku
+
+Na ekranie głównym dodaj przycisk **Dodaj wydatek** nad listą wydatków.
+
+Po kliknięciu:
+
+- otwiera się modal,
+- formularz jest pusty,
+- przycisk zapisu dodaje nowy wydatek,
+- po poprawnym zapisaniu modal się zamyka,
+- lista wydatków, podsumowania i filtry odświeżają się.
+
+## 3. Edycja wydatku
+
+Każdy wydatek na liście powinien mieć przycisk **Edytuj**.
+
+Po kliknięciu:
+
+- otwiera się modal,
+- formularz zostaje uzupełniony danymi wybranego wydatku,
+- zapis aktualizuje istniejący wydatek,
+- po poprawnym zapisaniu modal się zamyka,
+- lista i podsumowania odświeżają się.
+
+## 4. Usuwanie wydatków
+
+Aplikacja powinna umożliwiać:
+
+- usunięcie pojedynczego wydatku,
+- usunięcie wszystkich wydatków.
+
+Przed usunięciem wszystkich wydatków aplikacja musi zapytać użytkownika o potwierdzenie.
+
+Po usunięciu wszystkich danych aplikacja powinna też wyczyścić tryb edycji i zamknąć modal, jeśli był otwarty.
+
+## 5. Walidacja
+
+Nie pozwalaj zapisać niepoprawnego wydatku.
+
+Walidacja musi obejmować:
+
+- pustą nazwę,
+- brak kwoty,
+- kwotę równą `0`,
+- kwotę ujemną,
+- brak kategorii,
+- brak daty.
+
+W formularzu kategorii dodaj pustą opcję, np.:
+
+`Wybierz kategorię`
+
+Dopiero po wybraniu prawdziwej kategorii formularz może zostać zapisany.
+
+Komunikaty błędów mogą być pokazane przez `alert`, tekst pod formularzem albo komponent DaisyUI, np. `alert alert-error`.
+
+## 6. Bezpieczne wyświetlanie danych
+
+Nie używaj `innerHTML` do wstawiania nazwy wydatku wpisanej przez użytkownika.
+
+Zamiast tego twórz elementy przez JavaScript i ustawiaj tekst przez:
+
+`textContent`
+
+Chodzi o to, aby aplikacja nie traktowała wpisanej nazwy jako kodu HTML.
+
+## 7. Podsumowanie
+
+Na ekranie pokaż:
+
+- łączną kwotę wszystkich wydatków,
+- liczbę zapisanych wydatków,
+- podsumowanie wydatków według kategorii.
+
+Podsumowanie według kategorii powinno pokazywać wszystkie kategorie:
+
+- Jedzenie,
+- Transport,
+- Rozrywka,
+- Zakupy,
+- Rachunki,
+- Inne.
+
+Jeśli w danej kategorii nie ma wydatków, pokaż `0.00 zł`.
+
+## 8. Filtrowanie i sortowanie
+
+Zachowaj działające filtrowanie:
+
+- wszystkie wydatki,
+- wydatki z wybranej kategorii,
+- wydatki z wybranego miesiąca,
+- wyszukiwanie po nazwie.
+
+Zachowaj działające sortowanie:
+
+- od najdroższego,
+- od najtańszego,
+- od najnowszego,
+- od najstarszego.
+
+Filtry i sortowanie powinny działać razem.
+
+## 9. localStorage
+
+Wydatki muszą być zapisywane w `localStorage`.
+
+Po zamknięciu przeglądarki i ponownym otwarciu aplikacji dane powinny nadal być dostępne.
+
+Dodatkowo zabezpiecz aplikację przed sytuacją, w której dane w `localStorage` są uszkodzone lub nie da się ich odczytać.
+
+## 10. Wygląd aplikacji
+
+Użyj Tailwind CSS i DaisyUI do przygotowania finalnego wyglądu aplikacji.
+
+Aplikacja powinna mieć:
+
+- czytelny układ,
+- estetyczne przyciski,
+- formularz w modalu,
+- karty lub sekcje DaisyUI,
+- responsywny wygląd na mniejszym ekranie,
+- spójne odstępy,
+- czytelną listę wydatków.
+
+Możesz używać klas DaisyUI takich jak:
+
+- `btn`,
+- `btn-primary`,
+- `btn-error`,
+- `modal`,
+- `modal-box`,
+- `input`,
+- `select`,
+- `card`,
+- `stat`,
+- `alert`.
+
+## 11. Organizacja kodu
+
+Kod powinien być uporządkowany i możliwy do wyjaśnienia.
+
+Podziel logikę na funkcje, np.:
+
+- otwieranie modala,
+- zamykanie modala,
+- przygotowanie formularza dodawania,
+- przygotowanie formularza edycji,
+- walidacja formularza,
+- zapis do `localStorage`,
+- renderowanie listy,
+- renderowanie podsumowania,
+- renderowanie kategorii,
+- usuwanie wydatku,
+- czyszczenie wszystkich danych.
+
+Unikaj sytuacji, w której jedna funkcja robi wszystko.
+
+## 12. README
+
+Zaktualizuj README.
+
+README powinno zawierać krótko:
+
+- co robi aplikacja,
+- jak ją uruchomić,
+- jakie funkcje zawiera,
+- jak działa dodawanie i edycja przez modal,
+- jaka funkcja dodatkowa została dodana,
+- czego nauczyłaś się przy tym zadaniu.
+
+## 13. Lista wydatków w tabeli
+
+Zmień sposób wyświetlania wydatków.
+
+Zamiast zwykłej listy `<ul>` / `<li>`, pokaż wydatki w tabeli.
+
+Tabela powinna mieć kolumny:
+
+- nazwa wydatku,
+- kwota,
+- kategoria,
+- data,
+- akcje.
+
+W kolumnie **akcje** powinny znajdować się przyciski:
+
+- **Edytuj**,
+- **Usuń**.
+
+Tabela powinna być ostylowana za pomocą Tailwind CSS i DaisyUI.
+
+Możesz użyć klas DaisyUI, np.:
+
+- `table`,
+- `table-zebra`,
+- `table-pin-rows`,
+- `overflow-x-auto`,
+- `btn`,
+- `btn-sm`,
+- `btn-outline`.
+
+Tabela powinna dobrze wyglądać również na mniejszym ekranie. Jeśli ekran jest wąski, tabela może przewijać się poziomo.
+
+Po dodaniu, edycji, usunięciu, filtrowaniu i sortowaniu tabela musi się odświeżać tak samo jak wcześniejsza lista.
+
+Zwróć uwagę, aby nie używać `innerHTML` do wstawiania nazwy wydatku wpisanej przez użytkownika. Dane użytkownika w tabeli ustawiaj przez `textContent`.
+
+
+## Kryterium ukończenia
+
+Zadanie uznaj za skończone dopiero wtedy, gdy sprawdzisz cały scenariusz:
+
+1. Otwierasz aplikację.
+2. Klikasz **Dodaj wydatek**.
+3. Modal się otwiera.
+4. Dodajesz poprawny wydatek.
+5. Modal się zamyka.
+6. Wydatek pojawia się na liście.
+7. Edytujesz wydatek przez przycisk **Edytuj**.
+8. Modal otwiera się z uzupełnionymi danymi.
+9. Zapisujesz zmiany.
+10. Lista się odświeża.
+11. Usuwasz jeden wydatek.
+12. Dodajesz kilka wydatków z różnymi kategoriami i datami.
+13. Sprawdzasz filtrowanie.
+14. Sprawdzasz sortowanie.
+15. Sprawdzasz podsumowanie ogólne.
+16. Sprawdzasz podsumowanie według kategorii.
+17. Zamykasz przeglądarkę.
+18. Otwierasz aplikację ponownie.
+19. Dane nadal są dostępne.
+20. Usuwasz wszystkie wydatki po potwierdzeniu.
+21. Sprawdzasz, czy wydatki wyświetlają się w tabeli.
+22. Sprawdzasz, czy przyciski **Edytuj** i **Usuń** działają w kolumnie akcji.
+23. Sprawdzasz, czy tabela wygląda poprawnie na węższym ekranie.
+
+## Efekt końcowy
+
+Finalna wersja aplikacji powinna wyglądać i działać jak mała, kompletna aplikacja do codziennego zapisywania wydatków.
+
+Najważniejsze nie jest to, żeby kod był idealny. Najważniejsze jest to, żeby był:
+
+- działający,
+- czytelny,
+- logicznie podzielony,
+- możliwy do samodzielnego wyjaśnienia.
+
+
+Moim zdaniem to dobre zadanie zamykające: nie dokłada już zupełnie nowej dziedziny, tylko zmusza Pati do uporządkowania tego, czego się nauczyła. Modal jest tu bardzo trafiony, bo łączy HTML, JS, stan formularza, edycję, resetowanie danych i DaisyUI w jednym praktycznym problemie.
