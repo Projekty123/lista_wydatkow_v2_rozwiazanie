@@ -112,11 +112,14 @@ function render() {
     for (let i = 0; i < widoczneWydatki.length; i++) {
         let w = widoczneWydatki[i];
         let li = document.createElement("li");
+        li.className = "flex flex-col gap-3 rounded-xl bg-base-200 p-4 shadow-sm sm:flex-row sm:items-center sm:justify-between";
 
         li.innerHTML = `
             ${w.nazwa} - ${w.kwota.toFixed(2)} zł (${w.kategoria}) [${w.data}]
-            <button type="button" onclick="edytujWydatek(${w.id})">Edytuj</button>
-            <button type="button" onclick="usunWydatek(${w.id})">Usuń</button>
+            <div class="flex gap-1">
+            <button type="button" onclick="edytujWydatek(${w.id})" class="btn btn-sm btn-outline btn-info">Edytuj</button>
+            <button type="button" onclick="usunWydatek(${w.id})" class="btn btn-sm btn-outline btn-error">Usuń</button>
+            </div>
         `;
         listaEl.appendChild(li);
     }

@@ -1,91 +1,215 @@
 <!DOCTYPE html>
-<html lang="pl">
+<html lang="pl" data-theme="light">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lista wydatków</title>
 
-    <script src="script_v2.js" defer></script>
-</head>
+    <!-- daisyUI -->
+    <link
+        href="https://cdn.jsdelivr.net/npm/daisyui@5"
+        rel="stylesheet"
+        type="text/css"
+    />
 
-<body>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
 
-    <h1>Lista wydatków</h1>
+        <script src="script_v2.js" defer></script>
+    </head>
 
-    <form>
-        <label for="nazwa">Nazwa wydatku:</label>
-        <input type="text" id="nazwa">
+<body class="min-h-screen bg-base-200">
 
-        <label for="kwota">Kwota:</label>
-        <input type="number" id="kwota" step="0.01">
+    <main class="container mx-auto max-w-5xl px-4 py-8">
 
-        <label for="kategoria">Kategoria:</label>
-        <select id="kategoria">
-            <option value="jedzenie">Jedzenie</option>
-            <option value="transport">Transport</option>
-            <option value="rozrywka">Rozrywka</option>
-            <option value="zakupy">Zakupy</option>
-            <option value="rachunki">Rachunki</option>
-            <option value="inne">Inne</option>
-        </select>
+    <header class="mb-8 text-center">
+        <h1 class="text-4xl font-bold text-primary">Lista wydatków</h1>
+    </header>   
 
-        <label for="data">Data wydatku:</label>
-        <input type="date" id="data">
+    <section class="card mb-6 bg-base-100 shadow-xl">
+            <div class="card-body">
+                <h2 class="card-title mb-4 text-2xl">
+                    Dodaj wydatek
+                </h2>
+                <form class="grid grid-cols-1 gap-4 md:grid-cols-2">
+                    <div class="form-control md:col-span-2">
 
-        <button type="submit">Dodaj</button>
-    </form>
+                        <label for="nazwa">
+                            <span class="label">
+                                Nazwa wydatku
+                            </span>
+                        </label>
+                        <input type="text" id="nazwa" class="input w-full">
 
+                    </div>
+                        
+                    <div class="form-control">
 
-    <h2>Podsumowanie</h2>
+                        <label for="kwota" class="label">
+                            <span class="label-text font-medium">
+                                Kwota
+                            </span>
+                        </label>
+                        <input type="number" id="kwota" step="0.01" class="input w-full">
 
-    <p>
-        Łączna kwota:
-        <strong><span id="suma">0.00</span> zł</strong>
-    </p>
+                    </div>
 
-    <p>
-        Liczba wydatków:
-        <strong><span id="liczbaWydatkow">0</span></strong>
-    </p>
+                    <div class="form-control">
 
-    <h2>Wydatki</h2>
-    <input type="text" id="wyszukiwarka" placeholder="Szukaj wydatku...">
+                        <label for="kategoria" class="label">
+                            <span class="label-text font-medium">
+                                Kategoria
+                            </span>
+                        </label>
 
-    <label for="filtrKategoria">Kategoria:</label>
-    <select id="filtrKategoria">
-        <option value="wszystkie">Wszystkie</option>
-        <option value="jedzenie">Jedzenie</option>
-        <option value="transport">Transport</option>
-        <option value="rozrywka">Rozrywka</option>
-        <option value="zakupy">Zakupy</option>
-        <option value="rachunki">Rachunki</option>
-        <option value="inne">Inne</option>
-    </select>
+                        <select id="kategoria" class="select w-full">
+                            <option value="jedzenie">Jedzenie</option>
+                            <option value="transport">Transport</option>
+                            <option value="rozrywka">Rozrywka</option>
+                            <option value="zakupy">Zakupy</option>
+                            <option value="rachunki">Rachunki</option>
+                            <option value="inne">Inne</option>
+                        </select>
 
-    <label for="filtrMiesiac">Miesiąc:</label>
-    <input type="month" id="filtrMiesiac">
+                    </div>
 
+                    <div class="form-control">
 
-    <label for="sortowanie">Sortowanie:</label>
-    <select id="sortowanie">
-        <option value="najnowsze">Najnowsze</option>
-        <option value="najstarsze">Najstarsze</option>
-        <option value="najdrozsze">Najdroższe</option>
-        <option value="najtansze">Najtańsze</option>
-    </select>
+                        <label for="data" class="label">
+                            <span class="label-text font-medium">
+                                Data wydatku
+                            </span>
+                        </label>
+                        <input type="date" id="data" class="input w-full">
+                    
+                    </div>
 
+                    <div class="flex items-end">
 
-    <ul id="lista"></ul>
+                        <button type="submit" class="btn btn-primary w-full">Dodaj</button>
 
+                    </div>
+                </form>
+            </div>
+    </section>
 
-    <h2>Wydatki według kategorii</h2>
+    <section class="mb-6">
+        <h2 class="mb-4 text-2xl font-bold">Podsumowanie</h2>
 
-    <ul id="podsumowanieKategorii"></ul>
+        <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
+            
+            <div class="stat rounded-box bg-base-100 shadow">
+                <div class="stat-title">
+                    Łączna kwota
+                </div>  
 
+                <div class="stat-value text-primary">
+                    <span id="suma">0.00</span> zł
+                </div>
 
-    <button type="button" id="usunWszystkie">
-        Usuń wszystkie wydatki
-    </button>
+                <div class="stat-desc">
+                    Wszystkie zapisane wydatki
+                </div>
+            </div>
+            
+
+            <div class="stat rounded-box bg-base-100 shadow">
+                <div class="stat-title">
+                    Liczba wydatków
+                </div>
+
+                <div class="stat-value">
+                    <span id="liczbaWydatkow">0</span>
+                </div>
+
+                <div class="stat-desc">
+                    Zapisane wydatki
+                </div>
+            </div>
+
+        </div>
+
+    </section>
+
+    <section class="card mb-6 bg-base-100 shadow-xl">
+        <div class="card-body">
+
+            <h2 class="card-title mb-4 text-2xl">Wydatki</h2>
+
+            <div class="form-control mb-4">
+                <input type="text" id="wyszukiwarka" placeholder="Szukaj wydatku..." class="input w-full">
+            </div>
+
+            <div class="grid grid-cols-1 gap-4 md:grid-cols-3">
+
+                <div class="form-control">
+                    <label for="filtrKategoria" class="label">
+                        <span class="label-text">
+                            Kategoria
+                        </span>
+                    </label>
+                
+
+                    <select id="filtrKategoria" class="select w-full">
+                        <option value="wszystkie">Wszystkie</option>
+                        <option value="jedzenie">Jedzenie</option>
+                        <option value="transport">Transport</option>
+                        <option value="rozrywka">Rozrywka</option>
+                        <option value="zakupy">Zakupy</option>
+                        <option value="rachunki">Rachunki</option>
+                        <option value="inne">Inne</option>
+                    </select>
+
+                </div>
+
+                <div class="form-control">
+                    <label for="filtrMiesiac" class="label">
+                        <span class="label-text">
+                            Miesiąc
+                        </span>
+                    </label>
+                    <input type="month" id="filtrMiesiac" class="input w-full">
+                </div>
+
+                <div class="form-control">
+                    <label for="sortowanie" class="label">
+                        <span class="label-text">
+                            Sortowanie
+                        </span>
+                    </label>
+                    <select id="sortowanie" class="select w-full">
+                        <option value="najnowsze">Najnowsze</option>
+                        <option value="najstarsze">Najstarsze</option>
+                        <option value="najdrozsze">Najdroższe</option>
+                        <option value="najtansze">Najtańsze</option>
+                    </select>
+                </div>
+
+            </div>
+
+            <ul id="lista" class="mt-6 space-y-3"></ul>
+
+        </div>
+    </section>
+
+    <section class="card mb-6 bg-base-100 shadow-xl">
+        <div class="card-body">
+
+            <h2 class="card-title text-2xl">Wydatki według kategorii</h2>
+
+            <ul id="podsumowanieKategorii" class="mt-4 space-y-2"></ul>
+
+        </div>
+    </section>
+
+    <div class="flex justify-center pb-6">
+
+        <button type="button" id="usunWszystkie" class="btn btn-error btn-outline">
+            Usuń wszystkie wydatki
+        </button>
+    </div>
+
+    </main>
 
 </body>
 </html>
